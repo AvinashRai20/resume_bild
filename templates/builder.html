@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Builder | ResumeCraft</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container nav-wrap">
+            <a href="{{ url_for('index') }}" class="brand">ResumeCraft</a>
+            <nav>
+                <a href="{{ url_for('builder') }}">Build Resume</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('signin') }}">Sign In</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="builder-page container">
+        <section class="builder-hero">
+            <div>
+                <p class="eyebrow">Resume creation journey</p>
+                <h1>Build a powerful resume with guided steps and premium style choices.</h1>
+                <p>Complete every section, choose a template, and preview your resume in real time. Then make edits instantly before exporting.</p>
+            </div>
+            <div class="builder-topcard">
+                <div class="tile"><strong>4 Sections</strong><span>Personal, Experience, Education, Style</span></div>
+                <div class="tile"><strong>Live Preview</strong><span>See updates instantly as you type</span></div>
+                <div class="tile"><strong>Custom Design</strong><span>Fonts, colors, borders, templates</span></div>
+            </div>
+        </section>
+
+        <section class="stepper-wrap">
+            <div class="stepper" id="stepper">
+                <button class="step active" data-step="0">1. Personal</button>
+                <button class="step" data-step="1">2. Experience</button>
+                <button class="step" data-step="2">3. Education</button>
+                <button class="step" data-step="3">4. Style</button>
+            </div>
+        </section>
+
+        <section class="builder-grid">
+            <form id="resumeForm" class="builder-form">
+                <div class="form-step active" data-step="0">
+                    <h2>Personal Information</h2>
+                    <div class="form-group">
+                        <label for="fullName">Full name</label>
+                        <input id="fullName" name="fullName" type="text" placeholder="Your full name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTitle">Headline / Job title</label>
+                        <input id="jobTitle" name="jobTitle" type="text" placeholder="Product Designer, Software Engineer" required />
+                    </div>
+                    <div class="grid-two">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input id="phone" name="phone" type="tel" placeholder="+91 12345 67890" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input id="location" name="location" type="text" placeholder="City, Country" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="summary">Professional summary</label>
+                        <textarea id="summary" name="summary" rows="4" placeholder="Share your top strengths and career focus."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="resumeUpload">Upload existing resume</label>
+                        <input id="resumeUpload" name="resumeUpload" type="file" accept="application/pdf,application/msword" />
+                        <p class="small-text">Upload your current resume to compare, review, or use as inspiration.</p>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="button button-secondary next-step">Continue</button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="1">
+                    <h2>Work Experience</h2>
+                    <div class="form-group">
+                        <label for="company">Company / Organization</label>
+                        <input id="company" name="company" type="text" placeholder="Company name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role / Position</label>
+                        <input id="role" name="role" type="text" placeholder="Product Manager, Developer" />
+                    </div>
+                    <div class="grid-two">
+                        <div class="form-group">
+                            <label for="experienceStart">Start date</label>
+                            <input id="experienceStart" name="experienceStart" type="text" placeholder="Jun 2023" />
+                        </div>
+                        <div class="form-group">
+                            <label for="experienceEnd">End date</label>
+                            <input id="experienceEnd" name="experienceEnd" type="text" placeholder="Present" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="experienceDetails">Experience details</label>
+                        <textarea id="experienceDetails" name="experienceDetails" rows="4" placeholder="Summarize achievements, responsibilities, and impact."></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="button button-secondary prev-step">Back</button>
+                        <button type="button" class="button button-primary next-step">Next</button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="2">
+                    <h2>Education & Skills</h2>
+                    <div class="form-group">
+                        <label for="education">Education</label>
+                        <input id="education" name="education" type="text" placeholder="Degree, University, Year" />
+                    </div>
+                    <div class="form-group">
+                        <label for="skills">Skills</label>
+                        <input id="skills" name="skills" type="text" placeholder="e.g., JavaScript, UX Design, Communication" />
+                    </div>
+                    <div class="form-group">
+                        <label for="certifications">Certifications & extras</label>
+                        <textarea id="certifications" name="certifications" rows="3" placeholder="Add any certificates, workshops, or awards."></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="button button-secondary prev-step">Back</button>
+                        <button type="button" class="button button-primary next-step">Next</button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="3">
+                    <h2>Template & Style Options</h2>
+                    <div class="grid-two">
+                        <div class="form-group">
+                            <label for="templateSelect">Choose template</label>
+                            <select id="templateSelect" name="templateSelect"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fontSelect">Choose font</label>
+                            <select id="fontSelect" name="fontSelect">
+                <option value="Inter, sans-serif">Inter</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+                <option value="'Segoe UI', sans-serif">Segoe UI</option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="grid-two">
+                        <div class="form-group">
+                            <label for="colorSelect">Accent color</label>
+                            <input id="colorSelect" name="colorSelect" type="color" value="#1f6feb" />
+                        </div>
+                        <div class="form-group">
+                            <label for="borderSelect">Border style</label>
+                            <select id="borderSelect" name="borderSelect">
+                <option value="none">None</option>
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="double">Double</option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="grid-two">
+                        <div class="form-group">
+                            <label for="fontSize">Font size</label>
+                            <input id="fontSize" name="fontSize" type="range" min="14" max="24" value="16" />
+                            <span id="fontSizeValue">16px</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Alignment</label>
+                            <div class="alignment-options">
+                                <button type="button" data-align="left" class="align-button active">Left</button>
+                                <button type="button" data-align="center" class="align-button">Center</button>
+                                <button type="button" data-align="right" class="align-button">Right</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionText">Template description</label>
+                        <p id="templateDescription" class="small-text">Choose a template to preview style, then customize its color and layout.</p>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="button button-secondary prev-step">Back</button>
+                        <button type="submit" class="button button-primary">Generate Resume</button>
+                        <button type="button" id="downloadDocx" class="button button-outline">Download as Word</button>
+                    </div>
+                </div>
+            </form>
+
+            <aside class="preview-panel">
+                <div class="preview-header">Resume preview</div>
+                <div id="resumePreview" class="resume-preview"></div>
+                <div class="preview-actions">
+                    <button class="button button-secondary" id="editResume">Edit any section</button>
+                    <p class="small-text">Use styles above to refresh the preview instantly after changing the template or colors.</p>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <p>ResumeCraft 2026 — Build resumes with confidence and style.</p>
+            <p><a href="{{ url_for('index') }}">Home</a> • <a href="{{ url_for('about') }}">About</a> • <a href="{{ url_for('signin') }}">Sign In</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script>
+        // Check user authentication status
+        fetch('/api/user')
+            .then(response => response.json())
+            .then(data => {
+                const nav = document.querySelector('nav');
+                if (data.user) {
+                    nav.innerHTML += '<a href="/logout">Logout</a>';
+                }
+            })
+            .catch(err => console.log('Auth check failed:', err));
+    </script>
+</body>
+
+</html>

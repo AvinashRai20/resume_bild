@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResumeCraft 2026 — Smart Resume Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container nav-wrap">
+            <a href="{{ url_for('index') }}" class="brand">ResumeCraft</a>
+            <nav>
+                <a href="{{ url_for('builder') }}">Build Resume</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('signin') }}">Sign In</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow">Next-gen Resume Experience</p>
+                <h1>Create your perfect resume step-by-step, with smart templates, fonts, and live editing.</h1>
+                <p class="hero-text">ResumeCraft helps you convert your career story into a stunning document with interactive guidance, design controls, and template choices built for today’s job seeker.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="{{ url_for('builder') }}">Start Building</a>
+                    <a class="button button-secondary" href="{{ url_for('signin') }}">Sign In</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <div class="preview-header">Live Resume Preview</div>
+                <div class="preview-sample">
+                    <span class="label">Choose template</span>
+                    <div class="sample-row"><strong>ResumeCraft</strong> • Modern • Editable • Mobile-friendly</div>
+                    <div class="sample-line"></div>
+                    <p class="sample-text">Add your headline, skills, experience, education, and style options in steps. Generate a complete downloadable resume-ready design in one screen.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="feature-section container" id="features">
+        <h2>Why ResumeCraft?</h2>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <h3>Step-by-step guidance</h3>
+                <p>Collect your profile, experience, education, skills and summary in an easy multi-page flow.</p>
+            </article>
+            <article class="feature-card">
+                <h3>Design control</h3>
+                <p>Pick fonts, colors, borders, alignment and templates so your resume feels unique and modern.</p>
+            </article>
+            <article class="feature-card">
+                <h3>Preview & edit</h3>
+                <p>See a live resume preview, then jump back to any section for edits before exporting.</p>
+            </article>
+            <article class="feature-card">
+                <h3>Upload old resume</h3>
+                <p>Already have a resume? Upload it for review and use it to build a fresh new version faster.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="bright-section">
+        <div class="container split-grid">
+            <div>
+                <p class="eyebrow">Designed for 2026</p>
+                <h2>Every detail matters</h2>
+                <p>ResumeCraft blends clean modern styling with flexible templates and polished formatting. Your resume can be professional, creative, or bold depending on the job you want.</p>
+                <ul class="checklist">
+                    <li>Multiple fonts and layout directions</li>
+                    <li>Template and color theme controls</li>
+                    <li>Live editing plus review and update flow</li>
+                    <li>Useful guidance for modern recruiting systems</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <img src="https://via.placeholder.com/560x360?text=Resume+Template+Preview" alt="Resume template preview" />
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <p>ResumeCraft 2026 — Create a resume that stands out with clarity, design, and precision.</p>
+            <p><a href="{{ url_for('about') }}">About</a> • <a href="{{ url_for('builder') }}">Builder</a> • <a href="{{ url_for('signin') }}">Sign In</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script>
+        // Check user authentication status
+        fetch('/api/user')
+            .then(response => response.json())
+            .then(data => {
+                const nav = document.querySelector('nav');
+                if (data.user) {
+                    nav.innerHTML += '<a href="/logout">Logout</a>';
+                } else {
+                    // Already has sign in link
+                }
+            })
+            .catch(err => console.log('Auth check failed:', err));
+    </script>
+</body>
+
+</html>

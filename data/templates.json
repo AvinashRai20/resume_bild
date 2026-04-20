@@ -1,0 +1,25 @@
+[{
+        "id": "modern",
+        "name": "Modern Classic",
+        "description": "A clean modern layout with bold headings and subtle accent color for clarity.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#1f6feb",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "classic",
+        "name": "Classic Minimal",
+        "description": "A refined classic resume style with soft contrast and elegant spacing.",
+        "fontFamily": "Georgia, serif",
+        "accentColor": "#ff9b67",
+        "borderStyle": "double"
+    },
+    {
+        "id": "bold",
+        "name": "Bold Creative",
+        "description": "A strong design with color highlights, bold sections and a modern presentation.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#42e0d9",
+        "borderStyle": "dashed"
+    }
+]

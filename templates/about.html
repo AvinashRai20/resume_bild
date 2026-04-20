@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About ResumeCraft 2026</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container nav-wrap">
+            <a href="{{ url_for('index') }}" class="brand">ResumeCraft</a>
+            <nav>
+                <a href="{{ url_for('builder') }}">Build Resume</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('signin') }}">Sign In</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-section container">
+        <div class="page-intro">
+            <p class="eyebrow">About ResumeCraft</p>
+            <h1>From idea to interview-ready resume in a smooth guided flow.</h1>
+            <p class="hero-text">ResumeCraft is built for students, professionals, and young creators who want a polished, modern resume without the complexity. Step-by-step input, live preview, and rich template options make resume building fast and attractive.</p>
+        </div>
+
+        <section class="about-grid">
+            <article class="feature-card">
+                <h2>Why this builder?</h2>
+                <p>We combine progressive form design with resume formatting so users can focus on content first, then style second. The result is a document that looks modern, reads clearly, and can be customized instantly.</p>
+            </article>
+            <article class="feature-card">
+                <h2>How it works</h2>
+                <ol>
+                    <li>Enter your personal and career details one section at a time.</li>
+                    <li>Choose templates, fonts, border style, and layout direction.</li>
+                    <li>Preview the resume live, then edit or export the final design.</li>
+                </ol>
+            </article>
+            <article class="feature-card">
+                <h2>What makes it unique</h2>
+                <p>ResumeCraft gives design options usually seen in professional resume tools, including template switching, color themes, font families, and alignment controls—all in a lightweight web experience.</p>
+            </article>
+        </section>
+
+        <section class="bright-section mini-section">
+            <div>
+                <h2>Built for the new generation</h2>
+                <p>Every element is crafted to feel fresh and modern. The interface is clean, interactive, and easy to explore, making resume creation feel rewarding instead of overwhelming.</p>
+            </div>
+            <div class="about-stats">
+                <div><strong>4</strong><span>Step resume workflow</span></div>
+                <div><strong>8+</strong><span>Style and template choices</span></div>
+                <div><strong>100%</strong><span>Responsive mobile-ready layout</span></div>
+            </div>
+        </section>
+
+        <a href="{{ url_for('builder') }}" class="button button-primary">Go Build Your Resume</a>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <p>ResumeCraft 2026 — A resume builder designed for clarity and impact.</p>
+            <p><a href="{{ url_for('index') }}">Home</a> • <a href="{{ url_for('builder') }}">Builder</a> • <a href="{{ url_for('signin') }}">Sign In</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+
+</html>
