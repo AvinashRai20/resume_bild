@@ -136,15 +136,36 @@ nav a:hover {
 }
 
 .button {
+    position: relative;
     border: 0;
-    border-radius: 999px;
-    padding: 14px 26px;
+    border-radius: 50px;
+    padding: 12px 24px;
     font-weight: 600;
-    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.button:hover::before {
+    left: 100%;
 }
 
 .button:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
 }
 
 .button-primary {
@@ -505,6 +526,16 @@ nav a:hover {
     gap: 16px;
 }
 
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.social-grid input {
+    border-radius: 12px;
+}
+
 .small-text {
     font-size: 0.95rem;
     color: var(--muted);
@@ -637,6 +668,16 @@ nav a:hover {
     font-size: 0.95rem;
 }
 
+.resume-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.resume-meta a:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 960px) {
     .hero-grid,
     .split-grid,
@@ -663,7 +704,10 @@ nav a:hover {
         grid-template-columns: 1fr;
     }
 }
+
+
 /* Enhanced Form Styles */
+
 .section-subtitle {
     color: var(--muted);
     font-size: 14px;
@@ -690,7 +734,9 @@ nav a:hover {
     color: var(--accent);
 }
 
+
 /* Template Grid */
+
 .template-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -724,7 +770,9 @@ nav a:hover {
     position: relative;
 }
 
+
 /* Alignment Grid */
+
 .alignment-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -770,4 +818,3 @@ nav a:hover {
     color: var(--accent);
     margin-right: 12px;
 }
-

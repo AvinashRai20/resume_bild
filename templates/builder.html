@@ -28,7 +28,7 @@
                 <p>Complete every section, choose a template, and preview your resume in real time. Then make edits instantly before exporting.</p>
             </div>
             <div class="builder-topcard">
-                <div class="tile"><strong>4 Sections</strong><span>Personal, Experience, Education, Style</span></div>
+                <div class="tile"><strong>6 Sections</strong><span>Personal, Experience, Education, Achievements, Languages, Style</span></div>
                 <div class="tile"><strong>Live Preview</strong><span>See updates instantly as you type</span></div>
                 <div class="tile"><strong>Custom Design</strong><span>Fonts, colors, borders, templates</span></div>
             </div>
@@ -39,7 +39,9 @@
                 <button class="step active" data-step="0">1. Personal</button>
                 <button class="step" data-step="1">2. Experience</button>
                 <button class="step" data-step="2">3. Education & Skills</button>
-                <button class="step" data-step="3">4. Style</button>
+                <button class="step" data-step="3">4. Achievements / Certificates</button>
+                <button class="step" data-step="4">5. Languages</button>
+                <button class="step" data-step="5">6. Style</button>
             </div>
         </section>
 
@@ -72,6 +74,17 @@
                     <div class="form-group">
                         <label for="summary">Professional summary</label>
                         <textarea id="summary" name="summary" rows="4" placeholder="Share your top strengths and career focus."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Social Media Links</label>
+                        <div class="social-grid">
+                            <input id="github" name="github" type="url" placeholder="github.com/username" />
+                            <input id="linkedin" name="linkedin" type="url" placeholder="linkedin.com/in/username" />
+                            <input id="instagram" name="instagram" type="url" placeholder="instagram.com/username" />
+                            <input id="facebook" name="facebook" type="url" placeholder="facebook.com/username" />
+                            <input id="twitter" name="twitter" type="url" placeholder="twitter.com/username" />
+                            <input id="website" name="website" type="url" placeholder="yourwebsite.com" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="resumeUpload">Upload existing resume</label>
@@ -124,8 +137,8 @@
                         <input id="skills" name="skills" type="text" placeholder="e.g., JavaScript, UX Design, Communication" />
                     </div>
                     <div class="form-group">
-                        <label for="certifications">Certifications & extras</label>
-                        <textarea id="certifications" name="certifications" rows="3" placeholder="Add any certificates, workshops, or awards."></textarea>
+                        <label for="certificationsInput">Certifications & extras</label>
+                        <textarea id="certificationsInput" name="certificationsInput" rows="3" placeholder="Add any certificates, workshops, or awards."></textarea>
                     </div>
                     <div class="form-buttons">
                         <button type="button" class="button button-secondary prev-step">Back</button>
@@ -134,6 +147,34 @@
                 </div>
 
                 <div class="form-step" data-step="3">
+                    <h2>Achievements / Certificates</h2>
+                    <div class="form-group">
+                        <label for="achievements">Achievements</label>
+                        <textarea id="achievements" name="achievements" rows="4" placeholder="List key achievements (one per line):&#10;e.g., Top Performer 2023, Hackathon Winner"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="certList">Additional Certificates</label>
+                        <textarea id="certList" name="certList" rows="4" placeholder="List certificates (one per line):&#10;e.g., AWS Certified Developer, Google Analytics"></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="button button-secondary prev-step">Back</button>
+                        <button type="button" class="button button-primary next-step">Next</button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="4">
+                    <h2>Languages</h2>
+                    <div class="form-group">
+                        <label for="languages">Languages</label>
+                        <input id="languages" name="languages" type="text" placeholder="English (Fluent), Hindi (Native), French (Intermediate)" />
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="button button-secondary prev-step">Back</button>
+                        <button type="button" class="button button-primary next-step">Next</button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="5">
                     <h2>Customize Your Resume Style</h2>
                     <div class="style-section">
                         <h3>Templates</h3>
@@ -177,6 +218,8 @@
                             <button type="button" class="color-option" data-color="#f9ca24" style="background-color: #f9ca24;"></button>
                             <input id="colorSelect" name="colorSelect" type="color" value="#1f6feb" style="display: none;" />
                         </div>
+                        <label for="bgColor" style="margin-top: 12px; display: block;">Page Background</label>
+                        <input id="bgColor" name="bgColor" type="color" value="#0b1220" />
                     </div>
                     <div class="style-section">
                         <h3>Borders</h3>

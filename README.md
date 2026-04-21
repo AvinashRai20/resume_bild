@@ -131,4 +131,3 @@ Feel free to submit issues and enhancement requests!
 ## 📄 License
 
 This project is for educational purposes.</content>
-<parameter name="filePath">c:\Users\ar187\OneDrive\Desktop\resume\README.md
