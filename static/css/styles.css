@@ -663,3 +663,111 @@ nav a:hover {
         grid-template-columns: 1fr;
     }
 }
+/* Enhanced Form Styles */
+.section-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.design-section {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.design-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.design-section h3 i {
+    color: var(--accent);
+}
+
+/* Template Grid */
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.template-option {
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.template-option:hover {
+    border-color: var(--accent);
+    background: var(--surface-alt);
+}
+
+.template-option.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.template-preview {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+/* Alignment Grid */
+.alignment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.alignment-option {
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.alignment-option:hover {
+    border-color: var(--accent);
+    background: var(--surface-alt);
+}
+
+.alignment-option.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.alignment-option i {
+    font-size: 18px;
+}
+
+.resume-social {
+    margin: 12px 0;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+}
+
+.resume-social a {
+    color: var(--accent);
+    margin-right: 12px;
+}
+

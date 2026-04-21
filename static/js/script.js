@@ -4,14 +4,13 @@ const stepButtons = Array.from(document.querySelectorAll('.step'));
 const nextButtons = document.querySelectorAll('.next-step');
 const prevButtons = document.querySelectorAll('.prev-step');
 const resumePreview = document.querySelector('#resumePreview');
-const templateSelect = document.querySelector('#templateSelect');
-const fontSelect = document.querySelector('#fontSelect');
-const colorSelect = document.querySelector('#colorSelect');
-const borderSelect = document.querySelector('#borderSelect');
+const templateGrid = document.querySelector('#templateGrid');
+const fontOptions = Array.from(document.querySelectorAll('.font-option'));
+const colorOptions = Array.from(document.querySelectorAll('.color-option'));
+const borderOptions = Array.from(document.querySelectorAll('.border-option'));
+const alignOptions = Array.from(document.querySelectorAll('.align-option'));
 const fontSizeRange = document.querySelector('#fontSize');
 const fontSizeValue = document.querySelector('#fontSizeValue');
-const alignmentButtons = Array.from(document.querySelectorAll('.align-button'));
-const templateDescription = document.querySelector('#templateDescription');
 const editResumeButton = document.querySelector('#editResume');
 const downloadDocxButton = document.querySelector('#downloadDocx');
 
@@ -51,26 +50,38 @@ function loadTemplates() {
     fetch('/data/templates.json')
         .then((response) => response.json())
         .then((templates) => {
+            templateGrid.innerHTML = '';
             templates.forEach((template) => {
-                const option = document.createElement('option');
-                option.value = template.id;
-                option.textContent = template.name;
-                option.dataset.description = template.description;
-                templateSelect.appendChild(option);
+                const templateButton = document.createElement('button');
+                templateButton.type = 'button';
+                templateButton.className = 'template-option';
+                templateButton.dataset.template = template.id;
+                templateButton.innerHTML = `
+                    <div class="template-preview" style="background: linear-gradient(135deg, ${template.accentColor}20, ${template.accentColor}10); border: 1px solid ${template.accentColor}40;">
+                        <div class="template-name">${template.name}</div>
+                        <div class="template-desc">${template.description}</div>
+                    </div>
+                `;
+                if (template.id === 'modern') templateButton.classList.add('active');
+                templateGrid.appendChild(templateButton);
             });
-            updateTemplateDescription();
+            // Add event listeners
+            document.querySelectorAll('.template-option').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.template-option').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    syncStyleInputs();
+                    renderPreview();
+                });
+            });
         })
         .catch(() => {
-            templateSelect.innerHTML = '<option value="modern">Modern Classic</option>';
-            templateDescription.textContent = 'Default modern resume template with strong headings and clean spacing.';
+            templateGrid.innerHTML = '<div class="template-option active" data-template="modern"><div class="template-preview"><div class="template-name">Modern Classic</div><div class="template-desc">Default modern resume template.</div></div></div>';
         });
 }
 
 function updateTemplateDescription() {
-    const selected = templateSelect.selectedOptions[0];
-    if (selected) {
-        templateDescription.textContent = selected.dataset.description;
-    }
+    // No longer needed with new UI
 }
 
 function collectData() {
@@ -138,12 +149,23 @@ function renderPreview() {
 }
 
 function syncStyleInputs() {
-  styleSettings.template = templateSelect.value;
-  styleSettings.fontFamily = fontSelect.value;
-  styleSettings.accentColor = colorSelect.value;
-  styleSettings.borderStyle = borderSelect.value;
-  styleSettings.fontSize = `${fontSizeRange.value}px`;
-  fontSizeValue.textContent = `${fontSizeRange.value}px`;
+    const activeTemplate = document.querySelector('.template-option.active');
+    styleSettings.template = activeTemplate ? activeTemplate.dataset.template : 'modern';
+    
+    const activeFont = document.querySelector('.font-option.active');
+    styleSettings.fontFamily = activeFont ? activeFont.dataset.font : 'Inter, sans-serif';
+    
+    const activeColor = document.querySelector('.color-option.active');
+    styleSettings.accentColor = activeColor ? activeColor.dataset.color : '#1f6feb';
+    
+    const activeBorder = document.querySelector('.border-option.active');
+    styleSettings.borderStyle = activeBorder ? activeBorder.dataset.border : 'none';
+    
+    styleSettings.fontSize = `${fontSizeRange.value}px`;
+    fontSizeValue.textContent = `${fontSizeRange.value}px`;
+    
+    const activeAlign = document.querySelector('.align-option.active');
+    styleSettings.align = activeAlign ? activeAlign.dataset.align : 'left';
 }
 
 function startResumeBuilder() {
@@ -170,7 +192,6 @@ function startResumeBuilder() {
     event.preventDefault();
     collectData();
     syncStyleInputs();
-    updateTemplateDescription();
     renderPreview();
     setStep(3);
 
@@ -191,39 +212,50 @@ function startResumeBuilder() {
     }
   });
 
-  templateSelect.addEventListener('change', () => {
-    syncStyleInputs();
-    updateTemplateDescription();
-    renderPreview();
+  // Font options
+  fontOptions.forEach(button => {
+    button.addEventListener('click', () => {
+      fontOptions.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      syncStyleInputs();
+      renderPreview();
+    });
   });
 
-  fontSelect.addEventListener('change', () => {
-    syncStyleInputs();
-    renderPreview();
+  // Color options
+  colorOptions.forEach(button => {
+    button.addEventListener('click', () => {
+      colorOptions.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      syncStyleInputs();
+      renderPreview();
+    });
   });
 
-  colorSelect.addEventListener('change', () => {
-    syncStyleInputs();
-    renderPreview();
+  // Border options
+  borderOptions.forEach(button => {
+    button.addEventListener('click', () => {
+      borderOptions.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      syncStyleInputs();
+      renderPreview();
+    });
   });
 
-  borderSelect.addEventListener('change', () => {
-    syncStyleInputs();
-    renderPreview();
+  // Alignment options
+  alignOptions.forEach(button => {
+    button.addEventListener('click', () => {
+      alignOptions.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      syncStyleInputs();
+      renderPreview();
+    });
   });
 
+  // Font size
   fontSizeRange.addEventListener('input', () => {
     syncStyleInputs();
     renderPreview();
-  });
-
-  alignmentButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      alignmentButtons.forEach((btn) => btn.classList.remove('active'));
-      button.classList.add('active');
-      styleSettings.align = button.dataset.align;
-      renderPreview();
-    });
   });
 
   editResumeButton?.addEventListener('click', () => setStep(0));
@@ -289,13 +321,16 @@ function handleAuthForm() {
           body: new URLSearchParams(data)
         });
 
-        if (response.ok) {
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
           window.location.href = '/builder';
         } else {
-          alert('Invalid credentials');
+          alert(result.error || 'Invalid credentials. Please try again.');
         }
       } catch (error) {
         alert('Sign in failed. Please try again.');
+        console.error('Sign in error:', error);
       }
     });
   }
@@ -313,16 +348,17 @@ function handleAuthForm() {
           body: new URLSearchParams(data)
         });
 
-        if (response.ok) {
-          alert('Account created successfully! Please sign in.');
-          signupForm.style.display = 'none';
-          signForm.style.display = 'grid';
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          alert('Account created successfully!');
+          window.location.href = '/builder';
         } else {
-          const result = await response.json();
-          alert(result.error || 'Sign up failed');
+          alert(result.error || 'Sign up failed. Please try again.');
         }
       } catch (error) {
         alert('Sign up failed. Please try again.');
+        console.error('Sign up error:', error);
       }
     });
   }

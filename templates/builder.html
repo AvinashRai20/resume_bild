@@ -38,7 +38,7 @@
             <div class="stepper" id="stepper">
                 <button class="step active" data-step="0">1. Personal</button>
                 <button class="step" data-step="1">2. Experience</button>
-                <button class="step" data-step="2">3. Education</button>
+                <button class="step" data-step="2">3. Education & Skills</button>
                 <button class="step" data-step="3">4. Style</button>
             </div>
         </section>
@@ -134,55 +134,106 @@
                 </div>
 
                 <div class="form-step" data-step="3">
-                    <h2>Template & Style Options</h2>
-                    <div class="grid-two">
-                        <div class="form-group">
-                            <label for="templateSelect">Choose template</label>
-                            <select id="templateSelect" name="templateSelect"></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="fontSelect">Choose font</label>
-                            <select id="fontSelect" name="fontSelect">
-                <option value="Inter, sans-serif">Inter</option>
-                <option value="Georgia, serif">Georgia</option>
-                <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
-                <option value="'Segoe UI', sans-serif">Segoe UI</option>
-              </select>
+                    <h2>Customize Your Resume Style</h2>
+                    <div class="style-section">
+                        <h3>Templates</h3>
+                        <div class="template-grid" id="templateGrid">
+                            <!-- Templates will be loaded here -->
                         </div>
                     </div>
-                    <div class="grid-two">
-                        <div class="form-group">
-                            <label for="colorSelect">Accent color</label>
-                            <input id="colorSelect" name="colorSelect" type="color" value="#1f6feb" />
-                        </div>
-                        <div class="form-group">
-                            <label for="borderSelect">Border style</label>
-                            <select id="borderSelect" name="borderSelect">
-                <option value="none">None</option>
-                <option value="solid">Solid</option>
-                <option value="dashed">Dashed</option>
-                <option value="double">Double</option>
-              </select>
+                    <div class="style-section">
+                        <h3>Fonts</h3>
+                        <div class="font-grid" id="fontGrid">
+                            <button type="button" class="font-option active" data-font="Inter, sans-serif">
+                                <span style="font-family: Inter, sans-serif;">Inter</span>
+                            </button>
+                            <button type="button" class="font-option" data-font="Georgia, serif">
+                                <span style="font-family: Georgia, serif;">Georgia</span>
+                            </button>
+                            <button type="button" class="font-option" data-font="'Space Grotesk', sans-serif">
+                                <span style="font-family: 'Space Grotesk', sans-serif;">Space Grotesk</span>
+                            </button>
+                            <button type="button" class="font-option" data-font="'Segoe UI', sans-serif">
+                                <span style="font-family: 'Segoe UI', sans-serif;">Segoe UI</span>
+                            </button>
+                            <button type="button" class="font-option" data-font="'Roboto', sans-serif">
+                                <span style="font-family: 'Roboto', sans-serif;">Roboto</span>
+                            </button>
+                            <button type="button" class="font-option" data-font="'Open Sans', sans-serif">
+                                <span style="font-family: 'Open Sans', sans-serif;">Open Sans</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="grid-two">
-                        <div class="form-group">
-                            <label for="fontSize">Font size</label>
-                            <input id="fontSize" name="fontSize" type="range" min="14" max="24" value="16" />
+                    <div class="style-section">
+                        <h3>Colors</h3>
+                        <div class="color-grid">
+                            <button type="button" class="color-option active" data-color="#1f6feb" style="background-color: #1f6feb;"></button>
+                            <button type="button" class="color-option" data-color="#ff9b67" style="background-color: #ff9b67;"></button>
+                            <button type="button" class="color-option" data-color="#42e0d9" style="background-color: #42e0d9;"></button>
+                            <button type="button" class="color-option" data-color="#9c6ade" style="background-color: #9c6ade;"></button>
+                            <button type="button" class="color-option" data-color="#ff6b6b" style="background-color: #ff6b6b;"></button>
+                            <button type="button" class="color-option" data-color="#4ecdc4" style="background-color: #4ecdc4;"></button>
+                            <button type="button" class="color-option" data-color="#45b7d1" style="background-color: #45b7d1;"></button>
+                            <button type="button" class="color-option" data-color="#f9ca24" style="background-color: #f9ca24;"></button>
+                            <input id="colorSelect" name="colorSelect" type="color" value="#1f6feb" style="display: none;" />
+                        </div>
+                    </div>
+                    <div class="style-section">
+                        <h3>Borders</h3>
+                        <div class="border-grid">
+                            <button type="button" class="border-option active" data-border="none">
+                                <div class="border-preview" style="border: none;"></div>
+                                <span>None</span>
+                            </button>
+                            <button type="button" class="border-option" data-border="solid">
+                                <div class="border-preview" style="border: 2px solid #1f6feb;"></div>
+                                <span>Solid</span>
+                            </button>
+                            <button type="button" class="border-option" data-border="dashed">
+                                <div class="border-preview" style="border: 2px dashed #1f6feb;"></div>
+                                <span>Dashed</span>
+                            </button>
+                            <button type="button" class="border-option" data-border="double">
+                                <div class="border-preview" style="border: 4px double #1f6feb;"></div>
+                                <span>Double</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="style-section">
+                        <h3>Text Alignment</h3>
+                        <div class="alignment-grid">
+                            <button type="button" class="align-option active" data-align="left">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <line x1="3" y1="12" x2="15" y2="12"></line>
+                                    <line x1="3" y1="18" x2="18" y2="18"></line>
+                                </svg>
+                                <span>Left</span>
+                            </button>
+                            <button type="button" class="align-option" data-align="center">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <line x1="6" y1="12" x2="18" y2="12"></line>
+                                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                                </svg>
+                                <span>Center</span>
+                            </button>
+                            <button type="button" class="align-option" data-align="right">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <line x1="9" y1="12" x2="21" y2="12"></line>
+                                    <line x1="6" y1="18" x2="21" y2="18"></line>
+                                </svg>
+                                <span>Right</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="style-section">
+                        <h3>Font Size</h3>
+                        <div class="font-size-control">
+                            <input id="fontSize" name="fontSize" type="range" min="12" max="20" value="16" />
                             <span id="fontSizeValue">16px</span>
                         </div>
-                        <div class="form-group">
-                            <label>Alignment</label>
-                            <div class="alignment-options">
-                                <button type="button" data-align="left" class="align-button active">Left</button>
-                                <button type="button" data-align="center" class="align-button">Center</button>
-                                <button type="button" data-align="right" class="align-button">Right</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="descriptionText">Template description</label>
-                        <p id="templateDescription" class="small-text">Choose a template to preview style, then customize its color and layout.</p>
                     </div>
                     <div class="form-buttons">
                         <button type="button" class="button button-secondary prev-step">Back</button>

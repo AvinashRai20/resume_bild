@@ -89,21 +89,16 @@ def login():
     email = request.form.get('email')
     password = request.form.get('password')
 
+    if not email or not password:
+        return jsonify({'error': 'Email and password are required'}), 400
+
     user = User.query.filter_by(email=email).first()
 
-    if user and check_password_hash(user.password_hash, password):
+    if user and user.password_hash and check_password_hash(user.password_hash, password):
         login_user(user)
         return jsonify({'success': True})
     else:
-        # Create user if doesn't exist (demo mode)
-        if not user:
-            user = User(email=email, name=email.split('@')[0])
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
-            return jsonify({'success': True})
-
-    return jsonify({'error': 'Invalid credentials'}), 401
+        return jsonify({'error': 'Invalid email or password'}), 401
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -112,23 +107,36 @@ def signup():
     password = request.form.get('password')
     confirm_password = request.form.get('confirm_password')
 
+    # Validation
+    if not name or not email or not password or not confirm_password:
+        return jsonify({'error': 'All fields are required'}), 400
+
     if password != confirm_password:
         return jsonify({'error': 'Passwords do not match'}), 400
 
+    if len(password) < 6:
+        return jsonify({'error': 'Password must be at least 6 characters long'}), 400
+
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
-        return jsonify({'error': 'User already exists'}), 400
+        return jsonify({'error': 'Email already registered'}), 400
 
+    # Create new user with hashed password
+    hashed_password = generate_password_hash(password)
     user = User(
         email=email,
         name=name,
-        password_hash=generate_password_hash(password)
+        password_hash=hashed_password
     )
-    db.session.add(user)
-    db.session.commit()
-
-    login_user(user)
-    return jsonify({'success': True})
+    
+    try:
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return jsonify({'success': True})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': 'Failed to create account. Please try again.'}), 500
 
 # Google OAuth routes
 @app.route('/auth/google')

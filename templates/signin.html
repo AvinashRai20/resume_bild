@@ -40,11 +40,11 @@
             <form id="signForm" class="auth-form">
                 <div class="form-group">
                     <label for="signinEmail">Email address</label>
-                    <input id="signinEmail" type="email" placeholder="you@example.com" required />
+                    <input id="signinEmail" name="email" type="email" placeholder="you@example.com" required />
                 </div>
                 <div class="form-group">
                     <label for="signinPassword">Password</label>
-                    <input id="signinPassword" type="password" placeholder="Enter password" required />
+                    <input id="signinPassword" name="password" type="password" placeholder="Enter password" required />
                 </div>
                 <button type="submit" class="button button-primary">Sign In</button>
                 <p class="auth-note">Sign in to save and manage your resumes.</p>
@@ -55,19 +55,19 @@
                 <h2>Create Account</h2>
                 <div class="form-group">
                     <label for="signupName">Full Name</label>
-                    <input id="signupName" type="text" placeholder="Your full name" required />
+                    <input id="signupName" name="name" type="text" placeholder="Your full name" required />
                 </div>
                 <div class="form-group">
                     <label for="signupEmail">Email address</label>
-                    <input id="signupEmail" type="email" placeholder="you@example.com" required />
+                    <input id="signupEmail" name="email" type="email" placeholder="you@example.com" required />
                 </div>
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
-                    <input id="signupPassword" type="password" placeholder="Create password" required />
+                    <input id="signupPassword" name="password" type="password" placeholder="Create password" required />
                 </div>
                 <div class="form-group">
                     <label for="signupConfirmPassword">Confirm Password</label>
-                    <input id="signupConfirmPassword" type="password" placeholder="Confirm password" required />
+                    <input id="signupConfirmPassword" name="confirm_password" type="password" placeholder="Confirm password" required />
                 </div>
                 <button type="submit" class="button button-primary">Create Account</button>
                 <p class="auth-note">Already have an account? <a href="#" id="showSignin" class="signin-link">Sign in</a></p>
