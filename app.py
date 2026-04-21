@@ -11,6 +11,12 @@ from datetime import datetime
 from docx import Document
 from docx.shared import Inches
 import io
+from reportlab.lib.pagesizes import letter, A4
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key-change-in-production'
@@ -247,32 +253,50 @@ def generate_docx():
         doc.add_heading('Professional Summary', level=1)
         doc.add_paragraph(resume_data['summary'])
 
-    # Work Experience
-    if resume_data.get('company') or resume_data.get('role'):
+    # Work Experience - Updated for array
+    if resume_data.get('experiences') and len(resume_data['experiences']) > 0:
         doc.add_heading('Work Experience', level=1)
-        experience = f"{resume_data.get('role', '')} at {resume_data.get('company', '')}"
-        if resume_data.get('experienceStart') or resume_data.get('experienceEnd'):
-            experience += f" ({resume_data.get('experienceStart', '')} - {resume_data.get('experienceEnd', '')})"
-        doc.add_paragraph(experience)
-        if resume_data.get('experienceDetails'):
-            doc.add_paragraph(resume_data['experienceDetails'])
+        for exp in resume_data['experiences']:
+            experience = f"{exp.get('role', '')} at {exp.get('company', '')}"
+            start = exp.get('start', '')
+            end = exp.get('end', 'Present')
+            if start or end:
+                experience += f" ({start} - {end})"
+            doc.add_heading(experience, level=2)
+            if exp.get('details'):
+                doc.add_paragraph(exp['details'])
+            if exp.get('projects'):
+                doc.add_paragraph(f"Projects: {exp['projects']}")
 
     # Education
-    if resume_data.get('education'):
+    if resume_data.get('educations') and len(resume_data['educations']) > 0:
         doc.add_heading('Education', level=1)
-        doc.add_paragraph(resume_data['education'])
+        for edu in resume_data['educations']:
+            education = f"{edu.get('degree', '')}, {edu.get('college', '')}"
+            year = edu.get('year', '')
+            grade = edu.get('grade', '')
+            if year or grade:
+                education += f" ({year}, {grade})"
+            doc.add_paragraph(education)
 
     # Skills
-    if resume_data.get('skills'):
+    all_skills = []
+    if resume_data.get('skills', {}).get('tech'):
+        all_skills.extend(resume_data['skills']['tech'])
+    if resume_data.get('skills', {}).get('soft'):
+        all_skills.extend(resume_data['skills']['soft'])
+    if all_skills:
         doc.add_heading('Skills', level=1)
-        skills = resume_data['skills'].split(',')
-        for skill in skills:
+        for skill in all_skills:
             doc.add_paragraph(skill.strip(), style='List Bullet')
 
     # Certifications
-    if resume_data.get('certifications'):
-        doc.add_heading('Certifications', level=1)
-        doc.add_paragraph(resume_data['certifications'])
+    if resume_data.get('certifications') or resume_data.get('achievements'):
+        doc.add_heading('Certifications & Achievements', level=1)
+        if resume_data.get('certifications'):
+            doc.add_paragraph(resume_data['certifications'])
+        if resume_data.get('achievements'):
+            doc.add_paragraph(resume_data['achievements'])
 
     # Save to BytesIO
     bio = io.BytesIO()
@@ -284,6 +308,121 @@ def generate_docx():
         as_attachment=True,
         download_name='resume.docx',
         mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+
+
+@app.route('/api/generate-pdf', methods=['POST'])
+def generate_pdf():
+    data = request.get_json()
+    resume_data = data.get('resumeData', {})
+    style_settings = data.get('styleSettings', {})
+
+    # Create PDF with ReportLab
+    buffer = io.BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=A4, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
+
+    styles = getSampleStyleSheet()
+    title_style = ParagraphStyle(
+        'CustomTitle',
+        parent=styles['Heading1'],
+        fontSize=24,
+        spaceAfter=30,
+        alignment=1,  # Center
+        textColor=colors.darkblue
+    )
+    heading_style = ParagraphStyle(
+        'CustomHeading',
+        parent=styles['Heading2'],
+        fontSize=14,
+        spaceAfter=12,
+        spaceBefore=12,
+        textColor=colors.darkblue
+    )
+
+    story = []
+
+    # Title
+    story.append(Paragraph(resume_data.get('fullName', 'Full Name'), title_style))
+    story.append(Spacer(1, 12))
+
+    # Subtitle
+    if resume_data.get('jobTitle'):
+        story.append(Paragraph(resume_data.get('jobTitle'), styles['Heading3']))
+        story.append(Spacer(1, 12))
+
+    # Contact info
+    contact = []
+    if resume_data.get('email'):
+        contact.append(resume_data['email'])
+    if resume_data.get('phone'):
+        contact.append(resume_data['phone'])
+    if resume_data.get('location'):
+        contact.append(resume_data['location'])
+    if contact:
+        story.append(Paragraph(" | ".join(contact), styles['Normal']))
+        story.append(Spacer(1, 24))
+
+    # Summary
+    if resume_data.get('summary'):
+        story.append(Paragraph("PROFESSIONAL SUMMARY", heading_style))
+        story.append(Paragraph(resume_data['summary'], styles['Normal']))
+        story.append(Spacer(1, 18))
+
+    # Experience
+    if resume_data.get('experiences'):
+        story.append(Paragraph("EXPERIENCE", heading_style))
+        for exp in resume_data['experiences']:
+            role_company = f"<b>{exp.get('role', '')}</b><br/><i>{exp.get('company', '')}</i>"
+            dates = f"{exp.get('start', '')} - {exp.get('end', 'Present')}"
+            story.append(Paragraph(role_company, styles['Normal']))
+            story.append(Paragraph(dates, styles['Italic']))
+            if exp.get('details'):
+                story.append(Paragraph(exp['details'], styles['Normal']))
+            story.append(Spacer(1, 6))
+        story.append(Spacer(1, 18))
+
+    # Education
+    if resume_data.get('educations'):
+        story.append(Paragraph("EDUCATION", heading_style))
+        for edu in resume_data['educations']:
+            edu_info = f"<b>{edu.get('degree', '')}</b><br/>{edu.get('college', '')}"
+            details = f"({edu.get('year', '')}, {edu.get('grade', '')})"
+            story.append(Paragraph(edu_info, styles['Normal']))
+            story.append(Paragraph(details, styles['Italic']))
+            story.append(Spacer(1, 6))
+        story.append(Spacer(1, 18))
+
+    # Skills
+    skills_data = resume_data.get('skills', {})
+    all_skills = skills_data.get('tech', []) + skills_data.get('soft', [])
+    if all_skills:
+        story.append(Paragraph("SKILLS", heading_style))
+        skills_text = ", ".join(all_skills)
+        story.append(Paragraph(skills_text, styles['Normal']))
+        story.append(Spacer(1, 18))
+
+    # Languages
+    if resume_data.get('languages'):
+        story.append(Paragraph("LANGUAGES", heading_style))
+        story.append(Paragraph(resume_data['languages'], styles['Normal']))
+        story.append(Spacer(1, 18))
+
+    # Certifications
+    if resume_data.get('certifications') or resume_data.get('achievements'):
+        story.append(Paragraph("CERTIFICATIONS & ACHIEVEMENTS", heading_style))
+        if resume_data.get('certifications'):
+            story.append(Paragraph(resume_data['certifications'], styles['Normal']))
+        if resume_data.get('achievements'):
+            story.append(Paragraph(resume_data['achievements'], styles['Normal']))
+
+    doc.build(story)
+    buffer.seek(0)
+
+    return send_file(
+        buffer,
+        as_attachment=True,
+        download_name='resume.pdf',
+        mimetype='application/pdf'
     )
 
 @app.route('/api/upload-resume', methods=['POST'])

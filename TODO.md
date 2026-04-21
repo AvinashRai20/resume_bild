@@ -1,1 +1,0 @@
-# Resume Builder Update TODO\n\n## 1. Create TODO.md (Done)\n\n## 2. Fix button text spacing (Done)\n\n## 3. Add Achievements step 3 (Done)\n\n## 4. Add Languages step 4 (Done)\n\n## 5. Renumber Style to step 5 (Done)\n\n## 6. Update JS for new fields preview (Pending)\n\n## 7. Test (Pending)\n\n## 8. Complete task (Pending)

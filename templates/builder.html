@@ -78,12 +78,13 @@
                     <div class="form-group">
                         <label>Social Media Links</label>
                         <div class="social-grid">
-                            <input id="github" name="github" type="url" placeholder="github.com/username" />
-                            <input id="linkedin" name="linkedin" type="url" placeholder="linkedin.com/in/username" />
-                            <input id="instagram" name="instagram" type="url" placeholder="instagram.com/username" />
-                            <input id="facebook" name="facebook" type="url" placeholder="facebook.com/username" />
-                            <input id="twitter" name="twitter" type="url" placeholder="twitter.com/username" />
-                            <input id="website" name="website" type="url" placeholder="yourwebsite.com" />
+                            <input id="github" name="github" type="url" placeholder="GitHub" />
+                            <input id="linkedin" name="linkedin" type="url" placeholder="LinkedIn" />
+                            <input id="twitter" name="twitter" type="url" placeholder="Twitter/X" />
+                            <input id="instagram" name="instagram" type="url" placeholder="Instagram" />
+                            <input id="portfolio" name="portfolio" type="url" placeholder="Portfolio" />
+                            <input id="dribbble" name="dribbble" type="url" placeholder="Dribbble" />
+                            <input id="behance" name="behance" type="url" placeholder="Behance" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -94,31 +95,52 @@
                     <div class="form-buttons">
                         <button type="button" class="button button-secondary next-step">Continue</button>
                     </div>
+                    <div class="form-group">
+                        <button type="button" id="loadDemo" class="button button-outline">Load Demo Data</button>
+                    </div>
                 </div>
 
                 <div class="form-step" data-step="1">
                     <h2>Work Experience</h2>
-                    <div class="form-group">
-                        <label for="company">Company / Organization</label>
-                        <input id="company" name="company" type="text" placeholder="Company name" />
+                    <div id="experienceEntries">
+                        <!-- Dynamic experience entries -->
                     </div>
-                    <div class="form-group">
-                        <label for="role">Role / Position</label>
-                        <input id="role" name="role" type="text" placeholder="Product Manager, Developer" />
-                    </div>
-                    <div class="grid-two">
-                        <div class="form-group">
-                            <label for="experienceStart">Start date</label>
-                            <input id="experienceStart" name="experienceStart" type="text" placeholder="Jun 2023" />
+                    <template id="experienceTemplate" style="display: none;">
+                        <div class="entry-item">
+                            <div class="form-group">
+                                <label>Company</label>
+                                <input type="text" class="exp-company" placeholder="Company Name" />
+                            </div>
+                            <div class="form-group">
+                                <label>Role</label>
+                                <input type="text" class="exp-role" placeholder="Role/Position" />
+                            </div>
+                            <div class="grid-two">
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    <input type="month" class="exp-start" />
+                                </div>
+                                <div class="form-group">
+                                    <label>End Date</label>
+                                    <input type="month" class="exp-end" placeholder="Present" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Details</label>
+                                <textarea class="exp-details" rows="3" placeholder="Responsibilities & achievements"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Projects</label>
+                                <input type="text" class="exp-projects" placeholder="Key projects (comma separated)" />
+                            </div>
+                            <div class="entry-actions">
+                                <button type="button" class="button button-small btn-edit">Edit</button>
+                                <button type="button" class="button btn-small btn-delete">Delete</button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="experienceEnd">End date</label>
-                            <input id="experienceEnd" name="experienceEnd" type="text" placeholder="Present" />
-                        </div>
-                    </div>
+                    </template>
                     <div class="form-group">
-                        <label for="experienceDetails">Experience details</label>
-                        <textarea id="experienceDetails" name="experienceDetails" rows="4" placeholder="Summarize achievements, responsibilities, and impact."></textarea>
+                        <button type="button" id="addExperience" class="button button-primary">+ Add Experience</button>
                     </div>
                     <div class="form-buttons">
                         <button type="button" class="button button-secondary prev-step">Back</button>
@@ -128,9 +150,64 @@
 
                 <div class="form-step" data-step="2">
                     <h2>Education & Skills</h2>
+                    <div id="educationEntries">
+                        <!-- Dynamic education entries -->
+                    </div>
+                    <template id="educationTemplate" style="display: none;">
+                        <div class="entry-item">
+                            <div class="form-group">
+                                <label>Degree</label>
+                                <select class="edu-degree">
+                                    <option>B.Tech</option>
+                                    <option>B.Sc</option>
+                                    <option>M.Tech</option>
+                                    <option>M.Sc</option>
+                                    <option>B.E</option>
+                                    <option>Diploma</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>College/University</label>
+                                <input type="text" class="edu-college" placeholder="College Name" />
+                            </div>
+                            <div class="grid-two">
+                                <div class="form-group">
+                                    <label>Year</label>
+                                    <input type="number" class="edu-year" placeholder="2020" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Percentage/CGPA</label>
+                                    <input type="text" class="edu-grade" placeholder="8.5 CGPA" />
+                                </div>
+                            </div>
+                            <div class="entry-actions">
+                                <button type="button" class="button button-small btn-edit">Edit</button>
+                                <button type="button" class="button btn-small btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </template>
                     <div class="form-group">
-                        <label for="education">Education</label>
-                        <input id="education" name="education" type="text" placeholder="Degree, University, Year" />
+                        <button type="button" id="addEducation" class="button button-primary">+ Add Education</button>
+                    </div>
+                    <div id="skillsSection">
+                        <h3>Skills</h3>
+                        <div class="tabs">
+                            <button class="tab active" data-tab="tech">Technical Skills</button>
+                            <button class="tab" data-tab="soft">Soft Skills</button>
+                        </div>
+                        <div id="techSkills" class="tab-content active">
+                            <div class="form-group">
+                                <input id="techInput" type="text" placeholder="Add technical skill (press Enter)" />
+                                <div id="techTags" class="tags"></div>
+                            </div>
+                        </div>
+                        <div id="softSkills" class="tab-content">
+                            <div class="form-group">
+                                <input id="softInput" type="text" placeholder="Add soft skill (press Enter)" />
+                                <div id="softTags" class="tags"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="skills">Skills</label>
@@ -177,10 +254,18 @@
                 <div class="form-step" data-step="5">
                     <h2>Customize Your Resume Style</h2>
                     <div class="style-section">
-                        <h3>Templates</h3>
-                        <div class="template-grid" id="templateGrid">
-                            <!-- Templates will be loaded here -->
-                        </div>
+                        <h3>Templates & Layout</h3>
+                        <select id="templateSelect">
+                            <option value="ats">ATS Friendly (Simple)</option>
+                            <option value="modern" selected>Modern Colored</option>
+                            <option value="sideborder">Side Border</option>
+                            <option value="professional">Professional Clean</option>
+                        </select>
+                        <select id="layoutSelect">
+                            <option value="top">Top Layout</option>
+                            <option value="sidebar" selected>Left Sidebar</option>
+                        </select>
+                        <button id="themeToggle" class="button button-secondary">Toggle Light/Dark</button>
                     </div>
                     <div class="style-section">
                         <h3>Fonts</h3>
@@ -282,6 +367,7 @@
                         <button type="button" class="button button-secondary prev-step">Back</button>
                         <button type="submit" class="button button-primary">Generate Resume</button>
                         <button type="button" id="downloadDocx" class="button button-outline">Download as Word</button>
+                        <button type="button" id="downloadPdf" class="button button-primary">Download as PDF</button>
                     </div>
                 </div>
             </form>
@@ -304,6 +390,7 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
     <script>
         // Check user authentication status
