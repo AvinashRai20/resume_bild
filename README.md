@@ -37,7 +37,6 @@ python app.py
 ├── data/templates.json   # Template configs
 ├── uploads/              # File uploads
 └── README.md
-```
 
 ## 🎯 New Style Features (Step 7)
 ```
