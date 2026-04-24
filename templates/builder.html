@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume Builder | ResumeCraft</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -16,8 +17,7 @@
                 <a href="{{ url_for('builder') }}">Build Resume</a>
                 <a href="{{ url_for('about') }}">About</a>
                 <a href="{{ url_for('signin') }}">Sign In</a>
-            </nav>
-        </div>
+            </nav> <button id="themeToggle" class="button button-secondary theme-toggle" type="button">Light Mode</button> </div>
     </header>
 
     <main class="builder-page container">
@@ -72,9 +72,21 @@
                         <label for="location">Location</label>
                         <input id="location" name="location" type="text" placeholder="City, Country" required />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group upload-group">
+                        <label for="profilePhoto">Profile photo</label>
+                        <div class="photo-input-row">
+                            <input id="profilePhoto" name="profilePhoto" type="file" accept="image/*" />
+                            <button type="button" id="cropPhoto" class="button button-secondary">Crop photo</button>
+                        </div>
+                        <div id="photoPreview" class="photo-preview"></div>
+                        <p class="hint">Upload a photo for your resume. It will be center-cropped to a clean square.</p>
+                    </div>
+                    <div class="form-group summary-group">
                         <label for="summary">Professional summary</label>
-                        <textarea id="summary" name="summary" rows="4" placeholder="Share your top strengths and career focus."></textarea>
+                        <div class="summary-tools">
+                            <textarea id="summary" name="summary" rows="4" placeholder="Share your top strengths and career focus."></textarea>
+                            <button type="button" id="generateSummary" class="button button-outline">Generate summary</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="communication">Communication Skills</label>
@@ -140,7 +152,8 @@
                     </div>
                     <div class="form-group">
                         <label for="skills">Skills</label>
-                        <input id="skills" name="skills" type="text" placeholder="e.g., JavaScript, UX Design, Communication" />
+                        <input id="skills" name="skills" type="text" placeholder="e.g., JavaScript:90, UX Design:80, Communication" />
+                        <p class="hint">Add skills with optional strength values separated by commas.</p>
                     </div>
                     <div class="form-group">
                         <label for="certifications">Certifications & extras</label>
@@ -383,8 +396,9 @@
                     </div>
                     <div class="form-buttons">
                         <button type="button" class="button button-secondary prev-step">Back</button>
-                        <button type="submit" class="button button-primary">Generate Resume</button>
+                        <button type="submit" class="button button-primary">Save Resume</button>
                         <button type="button" id="downloadDocx" class="button button-outline">Download as Word</button>
+                        <button type="button" id="downloadPdf" class="button button-primary" style="margin-left: 8px;">Download as PDF</button>
                     </div>
                 </div>
             </form>

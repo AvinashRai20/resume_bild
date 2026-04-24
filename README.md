@@ -1,31 +1,30 @@
-# ResumeCraft 2026 🚀 Modern Flask Resume Builder
+# Resume Builder Application
 
-Professional 7-step resume builder with **live preview**, **glassmorphic style customization**, **authentication**, and **DOCX export**.
+Professional resume builder with guided workflow, real-time preview, authentication, and export features.
 
-## ✨ Features Added
-- **7-Step Guided Flow**: Personal → Experience → Education → Achievements → Languages → Projects → **Style**
-- **Live Preview**: Real-time updates as you type
-- **Style Magic ✨**: 5 templates, fonts, colors, layout, spacing, borders
-- **Glassmorphic UI**: Neon glows, particle effects, hover animations
-- **Landing Upgrades**: Template showcase, trust stats, 3-step \"How it Works\"
-- **Auth**: Email + Google OAuth, save resumes
-- **Export**: Word DOCX download
-- **Responsive**: Mobile-first design
+## ✨ Features
+- **Multi-Step Workflow**: Organized resume building process
+- **Live Preview**: Real-time updates as you build
+- **Authentication**: Secure user accounts
+- **Export**: Download your resume
+- **Responsive Design**: Works on all devices
 
-## 🐍 Quick Start
+## 🚀 Getting Started
 ```bash
 pip install -r requirements.txt
 python app.py
 ```
-**Open**: http://localhost:3000
 
-**Flow**: Sign in → Builder → Step 7 Style → Live preview → Download DOCX
-
-## 📁 Structure
+## 📁 Project Structure
 ```
-.
-├── app.py                 # Flask app + auth + DOCX
+├── app.py                 # Application core
 ├── requirements.txt       # Dependencies
+├── data/
+│   └── templates.json     # Configuration
+├── instance/              # Application data (auto-created)
+├── static/                # Frontend assets
+│   ├── css/
+│   └── js/
 ├── templates/             # HTML views
 │   ├── index.html        # Landing w/ template showcase
 │   ├── builder.html      # 7-step builder + glassmorphic style
@@ -37,6 +36,7 @@ python app.py
 ├── data/templates.json   # Template configs
 ├── uploads/              # File uploads
 └── README.md
+```
 
 ## 🎯 New Style Features (Step 7)
 ```
