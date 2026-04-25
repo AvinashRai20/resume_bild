@@ -1,5 +1,5 @@
 [{
-        "id": "modern",
+        "id": "modern-classic",
         "name": "Modern Classic",
         "description": "A clean modern layout with bold headings and subtle accent color for clarity.",
         "fontFamily": "Inter, sans-serif",
@@ -7,7 +7,7 @@
         "borderStyle": "solid"
     },
     {
-        "id": "classic",
+        "id": "classic-minimal",
         "name": "Classic Minimal",
         "description": "A refined classic resume style with soft contrast and elegant spacing.",
         "fontFamily": "Georgia, serif",
@@ -15,11 +15,227 @@
         "borderStyle": "double"
     },
     {
-        "id": "bold",
+        "id": "bold-creative",
         "name": "Bold Creative",
         "description": "A strong design with color highlights, bold sections and a modern presentation.",
         "fontFamily": "'Space Grotesk', sans-serif",
         "accentColor": "#42e0d9",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "professional-executive",
+        "name": "Professional Executive",
+        "description": "Sophisticated design perfect for senior positions with clean typography and professional colors.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#2d3748",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "creative-designer",
+        "name": "Creative Designer",
+        "description": "Vibrant and artistic layout ideal for creative professionals with bold colors and modern fonts.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#e53e3e",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "minimalist-clean",
+        "name": "Minimalist Clean",
+        "description": "Ultra-clean design focusing on content with minimal visual elements and plenty of white space.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#4a5568",
+        "borderStyle": "none"
+    },
+    {
+        "id": "academic-scholar",
+        "name": "Academic Scholar",
+        "description": "Traditional academic format with emphasis on education and research achievements.",
+        "fontFamily": "Georgia, serif",
+        "accentColor": "#2b6cb0",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "tech-innovator",
+        "name": "Tech Innovator",
+        "description": "Modern tech-focused design with sleek lines and innovative color schemes.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#00d4aa",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "corporate-professional",
+        "name": "Corporate Professional",
+        "description": "Conservative corporate style perfect for traditional business environments.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#1a365d",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "startup-founder",
+        "name": "Startup Founder",
+        "description": "Dynamic and energetic design for entrepreneurs with bold colors and modern typography.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#ff6b35",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "elegant-sophisticated",
+        "name": "Elegant Sophisticated",
+        "description": "Refined and luxurious design with elegant fonts and sophisticated color palette.",
+        "fontFamily": "Georgia, serif",
+        "accentColor": "#805ad5",
+        "borderStyle": "double"
+    },
+    {
+        "id": "vibrant-dynamic",
+        "name": "Vibrant Dynamic",
+        "description": "Energetic and lively design with bright colors and dynamic visual elements.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#ff0080",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "timeless-traditional",
+        "name": "Timeless Traditional",
+        "description": "Classic and enduring design that never goes out of style.",
+        "fontFamily": "Georgia, serif",
+        "accentColor": "#2d3748",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "futuristic-modern",
+        "name": "Futuristic Modern",
+        "description": "Cutting-edge design with futuristic elements and innovative layouts.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#00ffff",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "warm-inviting",
+        "name": "Warm Inviting",
+        "description": "Cozy and approachable design with warm colors and friendly typography.",
+        "fontFamily": "Georgia, serif",
+        "accentColor": "#ed8936",
+        "borderStyle": "none"
+    },
+    {
+        "id": "cool-contemporary",
+        "name": "Cool Contemporary",
+        "description": "Sleek and modern design with cool tones and contemporary styling.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#3182ce",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "artistic-creative",
+        "name": "Artistic Creative",
+        "description": "Highly creative and artistic layout perfect for creative professionals.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#9f7aea",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "structured-organized",
+        "name": "Structured Organized",
+        "description": "Well-organized and structured design with clear sections and logical flow.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#4a5568",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "playful-fun",
+        "name": "Playful Fun",
+        "description": "Lighthearted and fun design with playful elements and cheerful colors.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#ffd700",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "serious-professional",
+        "name": "Serious Professional",
+        "description": "Serious and professional design for formal business environments.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#1a202c",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "innovative-cutting-edge",
+        "name": "Innovative Cutting Edge",
+        "description": "Innovative and cutting-edge design pushing the boundaries of resume design.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#ff1493",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "balanced-harmonious",
+        "name": "Balanced Harmonious",
+        "description": "Well-balanced design with harmonious colors and proportional elements.",
+        "fontFamily": "Georgia, serif",
+        "accentColor": "#38a169",
+        "borderStyle": "none"
+    },
+    {
+        "id": "striking-bold",
+        "name": "Striking Bold",
+        "description": "Bold and striking design that commands attention and makes an impact.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#e53e3e",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "subtle-refined",
+        "name": "Subtle Refined",
+        "description": "Subtle and refined design with elegant details and sophisticated styling.",
+        "fontFamily": "Georgia, serif",
+        "accentColor": "#718096",
+        "borderStyle": "double"
+    },
+    {
+        "id": "energetic-vibrant",
+        "name": "Energetic Vibrant",
+        "description": "Energetic and vibrant design full of life and dynamic visual elements.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#ff4500",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "calm-serene",
+        "name": "Calm Serene",
+        "description": "Calm and serene design promoting peace and clarity of thought.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#81e6d9",
+        "borderStyle": "none"
+    },
+    {
+        "id": "powerful-impactful",
+        "name": "Powerful Impactful",
+        "description": "Powerful and impactful design that leaves a lasting impression.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#d53f8c",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "unique-distinctive",
+        "name": "Unique Distinctive",
+        "description": "Unique and distinctive design that stands out from the crowd.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#6b46c1",
+        "borderStyle": "dashed"
+    },
+    {
+        "id": "versatile-adaptable",
+        "name": "Versatile Adaptable",
+        "description": "Versatile and adaptable design that works across different industries.",
+        "fontFamily": "Inter, sans-serif",
+        "accentColor": "#4299e1",
+        "borderStyle": "solid"
+    },
+    {
+        "id": "memorable-unforgettable",
+        "name": "Memorable Unforgettable",
+        "description": "Memorable and unforgettable design that stays in the mind long after viewing.",
+        "fontFamily": "'Space Grotesk', sans-serif",
+        "accentColor": "#ffd700",
         "borderStyle": "dashed"
     }
 ]

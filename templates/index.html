@@ -11,11 +11,18 @@
 <body>
     <header class="topbar">
         <div class="container nav-wrap">
-            <a href="{{ url_for('index') }}" class="brand">ResumeCraft</a>
+            <div class="brand-section">
+                <a href="{{ url_for('index') }}" class="brand">ResumeCraft</a>
+                <span class="brand-tagline">2026 Edition</span>
+                <p class="brand-description">Professional Resume Builder for Modern Job Seekers</p>
+            </div>
             <nav>
                 <a href="{{ url_for('builder') }}">Build Resume</a>
                 <a href="{{ url_for('about') }}">About</a>
                 <a href="{{ url_for('signin') }}">Sign In</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌗</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -42,6 +49,113 @@
             </div>
         </div>
     </main>
+
+    <!-- Template Gallery -->
+    <section class="template-gallery container">
+        <h2>Choose Your Perfect Template</h2>
+        <p class="gallery-subtitle">Browse our professionally designed templates crafted for modern job seekers</p>
+        <div class="gallery-container">
+            <div class="gallery-track">
+                <div class="template-card" data-template="modern">
+                    <img src="https://via.placeholder.com/250x350?text=Modern+Classic" alt="Modern Classic Template">
+                    <div class="template-info">
+                        <h3>Modern Classic</h3>
+                        <p>A clean modern layout with bold headings and subtle accent color for clarity.</p>
+                        <a href="{{ url_for('builder') }}?template=modern" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="classic">
+                    <img src="https://via.placeholder.com/250x350?text=Classic+Minimal" alt="Classic Minimal Template">
+                    <div class="template-info">
+                        <h3>Classic Minimal</h3>
+                        <p>A refined classic resume style with soft contrast and elegant spacing.</p>
+                        <a href="{{ url_for('builder') }}?template=classic" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="bold">
+                    <img src="https://via.placeholder.com/250x350?text=Bold+Creative" alt="Bold Creative Template">
+                    <div class="template-info">
+                        <h3>Bold Creative</h3>
+                        <p>A strong design with color highlights, bold sections and a modern presentation.</p>
+                        <a href="{{ url_for('builder') }}?template=bold" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="professional">
+                    <img src="https://via.placeholder.com/250x350?text=Professional+Executive" alt="Professional Executive Template">
+                    <div class="template-info">
+                        <h3>Professional Executive</h3>
+                        <p>Sophisticated design for senior-level professionals and executives.</p>
+                        <a href="{{ url_for('builder') }}?template=professional" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="creative">
+                    <img src="https://via.placeholder.com/250x350?text=Creative+Designer" alt="Creative Designer Template">
+                    <div class="template-info">
+                        <h3>Creative Designer</h3>
+                        <p>Showcase your creative work with this visually striking layout.</p>
+                        <a href="{{ url_for('builder') }}?template=creative" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="minimalist">
+                    <img src="https://via.placeholder.com/250x350?text=Minimalist+Clean" alt="Minimalist Clean Template">
+                    <div class="template-info">
+                        <h3>Minimalist Clean</h3>
+                        <p>Simple, elegant design that lets your content shine.</p>
+                        <a href="{{ url_for('builder') }}?template=minimalist" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="academic">
+                    <img src="https://via.placeholder.com/250x350?text=Academic+Scholar" alt="Academic Scholar Template">
+                    <div class="template-info">
+                        <h3>Academic Scholar</h3>
+                        <p>Perfect for researchers, educators, and academics.</p>
+                        <a href="{{ url_for('builder') }}?template=academic" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="tech">
+                    <img src="https://via.placeholder.com/250x350?text=Tech+Innovator" alt="Tech Innovator Template">
+                    <div class="template-info">
+                        <h3>Tech Innovator</h3>
+                        <p>Modern design for technology professionals and innovators.</p>
+                        <a href="{{ url_for('builder') }}?template=tech" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <!-- Duplicate for seamless scrolling -->
+                <div class="template-card" data-template="modern">
+                    <img src="https://via.placeholder.com/250x350?text=Modern+Classic" alt="Modern Classic Template">
+                    <div class="template-info">
+                        <h3>Modern Classic</h3>
+                        <p>A clean modern layout with bold headings and subtle accent color for clarity.</p>
+                        <a href="{{ url_for('builder') }}?template=modern" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+                <div class="template-card" data-template="classic">
+                    <img src="https://via.placeholder.com/250x350?text=Classic+Minimal" alt="Classic Minimal Template">
+                    <div class="template-info">
+                        <h3>Classic Minimal</h3>
+                        <p>A refined classic resume style with soft contrast and elegant spacing.</p>
+                        <a href="{{ url_for('builder') }}?template=classic" class="template-btn">Use This Template</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="motivation-section container">
+        <div class="motivation-grid">
+            <div class="motivation-copy">
+                <p class="eyebrow">Your next chapter starts here</p>
+                <h2>Build a resume that opens doors, not just reads well.</h2>
+                <p>Every career story deserves a resume that feels confident, clear, and modern. ResumeCraft helps you present your experience with strong visual structure, calm guidance, and templates built to stand out in recruiter reviews.</p>
+                <p>Use the template gallery below to explore designs for every stage: professional, creative, executive, and academic. Your resume should reflect your ambition — not just your skills.</p>
+            </div>
+            <div class="motivation-visuals">
+                <div class="motivation-image" style="background-image:url('https://via.placeholder.com/340x220?text=Resume+Workflow')"></div>
+                <div class="motivation-image" style="background-image:url('https://via.placeholder.com/340x220?text=Template+Selection')"></div>
+                <div class="motivation-image" style="background-image:url('https://via.placeholder.com/340x220?text=Career+Growth')"></div>
+            </div>
+        </div>
+    </section>
 
     <section class="feature-section container" id="features">
         <h2>Why ResumeCraft?</h2>
@@ -105,6 +219,41 @@
                 }
             })
             .catch(err => console.log('Auth check failed:', err));
+
+
+        // Template Gallery Auto-scroll
+        const galleryTrack = document.querySelector('.gallery-track');
+        if (galleryTrack) {
+            const builderUrl = "{{ url_for('builder') }}";
+            const galleryItems = galleryTrack.innerHTML;
+            galleryTrack.innerHTML += galleryItems;
+
+            let scrollPosition = 0;
+            let scrollSpeed = 0.85;
+
+            function autoScroll() {
+                scrollPosition += scrollSpeed;
+                if (scrollPosition >= galleryTrack.scrollWidth / 2) {
+                    scrollPosition = 0;
+                }
+                galleryTrack.style.transform = `translateX(-${scrollPosition}px)`;
+                requestAnimationFrame(autoScroll);
+            }
+
+            autoScroll();
+            galleryTrack.addEventListener('mouseenter', () => scrollSpeed = 0);
+            galleryTrack.addEventListener('mouseleave', () => scrollSpeed = 0.85);
+
+            document.querySelectorAll('.template-card').forEach((card) => {
+                card.addEventListener('click', (event) => {
+                    if (event.target.closest('a')) return;
+                    const template = card.dataset.template;
+                    if (template) {
+                        window.location.href = `${builderUrl}?template=${template}`;
+                    }
+                });
+            });
+        }
     </script>
 </body>
 

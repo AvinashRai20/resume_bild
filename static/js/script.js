@@ -54,8 +54,7 @@ let styleSettings = {
     layout: 'single',
     spacing: '1.2'
 };
-const fallbackTemplates = [
-    {
+const fallbackTemplates = [{
         id: 'modern',
         name: 'Modern Classic',
         description: 'Clean, crisp layout with bright accent highlights and strong typography.',
@@ -128,7 +127,8 @@ function collectData() {
         if (key === 'profilePhoto') return;
         resumeData[key] = value;
     });
-    resumeData.bgColor = document.querySelector('#bgColor')?.value || resumeData.bgColor;
+    const bgColorInput = document.querySelector('#bgColor');
+    resumeData.bgColor = bgColorInput ? bgColorInput.value || resumeData.bgColor : resumeData.bgColor;
     resumeData.skillsList = parseSkills(resumeData.skills || '');
     resumeData.experiences = [];
     let expCount = 0;
@@ -199,6 +199,33 @@ function applyStyleSettings() {
     } else {
         resumePreview.classList.remove('dual-column');
     }
+}
+
+function getThemeToggleButton() {
+    return document.querySelector('#theme-toggle');
+}
+
+function updateThemeIcon() {
+    const themeToggle = getThemeToggleButton();
+    const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
+    if (themeIcon) {
+        themeIcon.textContent = document.body.classList.contains('dark') ? '🌙' : '☀️';
+    }
+}
+
+function initializeThemeToggle() {
+    const themeToggle = getThemeToggleButton();
+    if (!themeToggle) return;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.classList.toggle('dark', savedTheme === 'dark');
+    document.body.classList.toggle('light', savedTheme === 'light');
+    updateThemeIcon();
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark');
+        document.body.classList.toggle('light', !isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateThemeIcon();
+    });
 }
 
 function hexToRgba(hex, alpha) {
@@ -391,7 +418,6 @@ function startResumeBuilder() {
     const profilePhotoInput = document.querySelector('#profilePhoto');
     const cropPhotoButton = document.querySelector('#cropPhoto');
     const generateSummaryButton = document.querySelector('#generateSummary');
-    const themeToggleButton = document.querySelector('#themeToggle');
     const bgColorInput = document.querySelector('#bgColor');
 
     if (profilePhotoInput) {
@@ -414,10 +440,6 @@ function startResumeBuilder() {
 
     if (generateSummaryButton) {
         generateSummaryButton.addEventListener('click', generateSummary);
-    }
-
-    if (themeToggleButton) {
-        themeToggleButton.addEventListener('click', toggleTheme);
     }
 
     if (bgColorInput) {
@@ -711,6 +733,7 @@ function handleAuthForm() {
 }
 
 function initPage() {
+    initializeThemeToggle();
     if (form) {
         startResumeBuilder();
     }
